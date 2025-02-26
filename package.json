@@ -12,8 +12,10 @@
     "strapi": "strapi"
   },
   "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^5.0.1",
+    "@ckeditor/strapi-plugin-ckeditor": "^1.1.0",
     "@strapi/plugin-cloud": "5.10.3",
-    "@strapi/plugin-users-permissions": "5.10.3",
+    "@strapi/plugin-users-permissions": "^5.10.3",
     "@strapi/strapi": "5.10.3",
     "better-sqlite3": "11.3.0",
     "fs-extra": "^10.0.0",

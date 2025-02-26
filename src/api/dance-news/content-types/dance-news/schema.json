@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dance_new",
+  "info": {
+    "singularName": "dance-news",
+    "pluralName": "dance-new",
+    "displayName": "DanceNews"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Content": {
+      "type": "blocks",
+      "required": true
+    },
+    "Date": {
+      "required": true,
+      "type": "date"
+    },
+    "Image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
