@@ -19,7 +19,7 @@ export default [
           "script-src-elem": ["'self'", "'unsafe-inline'", "https:", "blob:"],
           "img-src": ["'self'", "data:", "blob:"],
           "media-src": ["'self'", "data:", "blob:"],
-          "connect-src": ["'self'", "https:", "https://dance-production-c62a.up.railway.app"],
+          "connect-src": ["'self'", "http:", "https:"], // Allow HTTP & HTTPS
         },
       },
     },

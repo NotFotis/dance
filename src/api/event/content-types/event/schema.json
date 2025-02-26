@@ -15,10 +15,6 @@
       "type": "string",
       "required": true
     },
-    "Description": {
-      "type": "blocks",
-      "required": true
-    },
     "Date": {
       "type": "date",
       "required": true
@@ -51,16 +47,6 @@
       },
       "required": true,
       "customField": "plugin::ckeditor5.CKEditor"
-    },
-    "description1": {
-      "type": "customField",
-      "options": {
-        "output": "HTML",
-        "licenseKey": "eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDE1NjQ3OTksImp0aSI6ImRjODkwZGVkLTE1ZDQtNDgyNC04NTE5LTg2MTQ4NWE3NTAzMSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjUxNWMzOTg4In0.3vi_CWSkS4hspgiGkbs1m6f04udxu9QMmeppiBNyzDJFsCEshc3w8mVfn4w-xNpbuxkrQeHVQDukQGeaSVlOZA",
-        "preset": "rich"
-      },
-      "required": true,
-      "customField": "plugin::ckeditor.CKEditor"
     },
     "events": {
       "type": "relation",

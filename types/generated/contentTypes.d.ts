@@ -596,17 +596,6 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
           preset: 'defaultHtml';
         }
       >;
-    Description: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    description1: Schema.Attribute.RichText &
-      Schema.Attribute.Required &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
-        {
-          licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDE1NjQ3OTksImp0aSI6ImRjODkwZGVkLTE1ZDQtNDgyNC04NTE5LTg2MTQ4NWE3NTAzMSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjUxNWMzOTg4In0.3vi_CWSkS4hspgiGkbs1m6f04udxu9QMmeppiBNyzDJFsCEshc3w8mVfn4w-xNpbuxkrQeHVQDukQGeaSVlOZA';
-          output: 'HTML';
-          preset: 'rich';
-        }
-      >;
     events: Schema.Attribute.Relation<
       'oneToMany',
       'api::saved-event.saved-event'

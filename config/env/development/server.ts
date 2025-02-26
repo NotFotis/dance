@@ -7,5 +7,5 @@ export default ({ env }) => ({
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
     jwtSecret: env('JWT_SECRET'),
-    url: env('RAILWAY_URL', 'https://dance-production-c62a.up.railway.app'),
+    url: env('PUBLIC_URL', 'http://localhost:1337'), // Ensure local URL is used
   });
