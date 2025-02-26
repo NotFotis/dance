@@ -1,6 +1,6 @@
 export default ({ env }) => ({
     host: env('HOST', '0.0.0.0'),
-    port: env.int('PORT', 1338),
+    port: env.int('PORT', 8080),
     keys: env.array('APP_KEYS'),
     secret: env('ADMIN_JWT_SECRET'),
     salt: env('API_TOKEN_SALT'),
