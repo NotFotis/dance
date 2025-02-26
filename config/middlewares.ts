@@ -10,13 +10,16 @@ export default [
   'strapi::favicon',
   'strapi::public',
   {
-    name: 'strapi::security',
+    name: "strapi::security",
     config: {
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'script-src': ['https://cdn.ckeditor.com'],
-          'connect-src': ['https://proxy-event.ckeditor.com']
+          "script-src": ["'self'", "'unsafe-inline'", "https:", "blob:"],
+          "script-src-elem": ["'self'", "'unsafe-inline'", "https:", "blob:"],
+          "img-src": ["'self'", "data:", "blob:"],
+          "media-src": ["'self'", "data:", "blob:"],
+          "connect-src": ["'self'", "https:", "https://dance-production-c62a.up.railway.app"],
         },
       },
     },
