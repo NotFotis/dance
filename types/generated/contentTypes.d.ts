@@ -442,6 +442,38 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
+  collectionName: 'artists';
+  info: {
+    displayName: 'Artists';
+    pluralName: 'artists';
+    singularName: 'artist';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Bio: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    events: Schema.Attribute.Relation<'manyToMany', 'api::event.event'>;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::artist.artist'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    Socials: Schema.Attribute.Component<'shared.social-link', true>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   collectionName: 'authors';
   info: {
@@ -584,6 +616,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    artists: Schema.Attribute.Relation<'manyToMany', 'api::artist.artist'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1206,6 +1239,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
+      'api::artist.artist': ApiArtistArtist;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
       'api::contact-form.contact-form': ApiContactFormContactForm;

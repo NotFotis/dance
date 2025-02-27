@@ -59,6 +59,12 @@
       "relation": "oneToMany",
       "target": "api::saved-event.saved-event",
       "mappedBy": "event"
+    },
+    "artists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::artist.artist",
+      "inversedBy": "events"
     }
   }
 }
