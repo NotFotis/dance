@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "music_genres",
+  "info": {
+    "singularName": "music-genre",
+    "pluralName": "music-genres",
+    "displayName": "Music-Genres",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "events": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::event.event",
+      "inversedBy": "music_genres"
+    },
+    "dance_news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::dance-news.dance-news",
+      "inversedBy": "music_genres"
+    },
+    "artists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::artist.artist",
+      "inversedBy": "music_genres"
+    },
+    "article": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    }
+  }
+}

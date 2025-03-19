@@ -4,7 +4,8 @@
   "info": {
     "singularName": "artist",
     "pluralName": "artists",
-    "displayName": "Artists"
+    "displayName": "Artists",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,18 +15,16 @@
       "type": "string",
       "required": true
     },
-    "Bio": {
-      "type": "blocks"
-    },
     "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "Socials": {
       "displayName": "SocialLink",
@@ -37,6 +36,12 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::event.event",
+      "mappedBy": "artists"
+    },
+    "music_genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music-genre.music-genre",
       "mappedBy": "artists"
     }
   }

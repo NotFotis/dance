@@ -65,12 +65,13 @@ export interface SharedSlider extends Struct.ComponentSchema {
 export interface SharedSocialLink extends Struct.ComponentSchema {
   collectionName: 'components_shared_social_links';
   info: {
+    description: '';
     displayName: 'SocialLink';
     icon: 'globe';
   };
   attributes: {
     platform: Schema.Attribute.Enumeration<
-      ['Facebook', 'Instagram', 'X', 'Beatport']
+      ['Facebook', 'Instagram', 'X', 'Beatport', 'Spotify']
     >;
     URL: Schema.Attribute.String;
   };

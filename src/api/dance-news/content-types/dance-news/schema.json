@@ -4,7 +4,8 @@
   "info": {
     "singularName": "dance-news",
     "pluralName": "dance-new",
-    "displayName": "DanceNews"
+    "displayName": "DanceNews",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -14,23 +15,39 @@
       "type": "string",
       "required": true
     },
-    "Content": {
-      "type": "blocks",
-      "required": true
-    },
     "Date": {
       "required": true,
       "type": "date"
     },
     "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author"
+    },
+    "Content": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.media",
+        "shared.rich-text",
+        "shared.seo"
+      ]
+    },
+    "music_genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music-genre.music-genre",
+      "mappedBy": "dance_news"
     }
   }
 }

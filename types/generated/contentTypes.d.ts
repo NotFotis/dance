@@ -445,6 +445,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
 export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
   collectionName: 'artists';
   info: {
+    description: '';
     displayName: 'Artists';
     pluralName: 'artists';
     singularName: 'artist';
@@ -453,7 +454,6 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Bio: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -465,6 +465,10 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
       'api::artist.artist'
     > &
       Schema.Attribute.Private;
+    music_genres: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::music-genre.music-genre'
+    >;
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     Socials: Schema.Attribute.Component<'shared.social-link', true>;
@@ -576,6 +580,7 @@ export interface ApiContactFormContactForm extends Struct.CollectionTypeSchema {
 export interface ApiDanceNewsDanceNews extends Struct.CollectionTypeSchema {
   collectionName: 'dance_new';
   info: {
+    description: '';
     displayName: 'DanceNews';
     pluralName: 'dance-new';
     singularName: 'dance-news';
@@ -584,7 +589,10 @@ export interface ApiDanceNewsDanceNews extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    Content: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    author: Schema.Attribute.Relation<'oneToOne', 'api::author.author'>;
+    Content: Schema.Attribute.DynamicZone<
+      ['shared.media', 'shared.rich-text', 'shared.seo']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -596,6 +604,10 @@ export interface ApiDanceNewsDanceNews extends Struct.CollectionTypeSchema {
       'api::dance-news.dance-news'
     > &
       Schema.Attribute.Private;
+    music_genres: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::music-genre.music-genre'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     Title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -641,6 +653,10 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
+    music_genres: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::music-genre.music-genre'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     savedEvents: Schema.Attribute.Relation<
       'oneToMany',
@@ -687,6 +703,42 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiMusicGenreMusicGenre extends Struct.CollectionTypeSchema {
+  collectionName: 'music_genres';
+  info: {
+    description: '';
+    displayName: 'Music-Genres';
+    pluralName: 'music-genres';
+    singularName: 'music-genre';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    artists: Schema.Attribute.Relation<'manyToMany', 'api::artist.artist'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dance_news: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::dance-news.dance-news'
+    >;
+    events: Schema.Attribute.Relation<'manyToMany', 'api::event.event'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::music-genre.music-genre'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiSavedEventSavedEvent extends Struct.CollectionTypeSchema {
   collectionName: 'saved_events';
   info: {
@@ -714,6 +766,10 @@ export interface ApiSavedEventSavedEvent extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    users_permissions_user: Schema.Attribute.Relation<
       'manyToOne',
       'plugin::users-permissions.user'
     >;
@@ -1175,7 +1231,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1246,6 +1301,7 @@ declare module '@strapi/strapi' {
       'api::dance-news.dance-news': ApiDanceNewsDanceNews;
       'api::event.event': ApiEventEvent;
       'api::global.global': ApiGlobalGlobal;
+      'api::music-genre.music-genre': ApiMusicGenreMusicGenre;
       'api::saved-event.saved-event': ApiSavedEventSavedEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

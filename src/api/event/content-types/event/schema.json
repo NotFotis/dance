@@ -65,6 +65,12 @@
       "relation": "manyToMany",
       "target": "api::artist.artist",
       "inversedBy": "events"
+    },
+    "music_genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music-genre.music-genre",
+      "mappedBy": "events"
     }
   }
 }
