@@ -633,14 +633,9 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Date: Schema.Attribute.Date & Schema.Attribute.Required;
-    Desc: Schema.Attribute.RichText &
-      Schema.Attribute.Required &
-      Schema.Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'defaultHtml';
-        }
-      >;
+    Desc: Schema.Attribute.DynamicZone<
+      ['shared.rich-text', 'shared.quote', 'shared.seo', 'shared.media']
+    >;
     events: Schema.Attribute.Relation<
       'oneToMany',
       'api::saved-event.saved-event'

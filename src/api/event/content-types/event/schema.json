@@ -40,14 +40,6 @@
     "tickets": {
       "type": "string"
     },
-    "Desc": {
-      "type": "customField",
-      "options": {
-        "preset": "defaultHtml"
-      },
-      "required": true,
-      "customField": "plugin::ckeditor5.CKEditor"
-    },
     "events": {
       "type": "relation",
       "relation": "oneToMany",
@@ -71,6 +63,15 @@
       "relation": "manyToMany",
       "target": "api::music-genre.music-genre",
       "mappedBy": "events"
+    },
+    "Desc": {
+      "type": "dynamiczone",
+      "components": [
+        "shared.rich-text",
+        "shared.quote",
+        "shared.seo",
+        "shared.media"
+      ]
     }
   }
 }
