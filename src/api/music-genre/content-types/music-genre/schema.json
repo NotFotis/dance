@@ -36,6 +36,12 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::article.article"
+    },
+    "music": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music.music",
+      "mappedBy": "music_genres"
     }
   }
 }

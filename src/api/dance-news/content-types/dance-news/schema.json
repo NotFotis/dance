@@ -35,19 +35,14 @@
       "relation": "oneToOne",
       "target": "api::author.author"
     },
-    "Content": {
-      "type": "dynamiczone",
-      "components": [
-        "shared.media",
-        "shared.rich-text",
-        "shared.seo"
-      ]
-    },
     "music_genres": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::music-genre.music-genre",
       "mappedBy": "dance_news"
+    },
+    "description": {
+      "type": "blocks"
     }
   }
 }

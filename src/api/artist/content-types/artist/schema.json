@@ -43,6 +43,12 @@
       "relation": "manyToMany",
       "target": "api::music-genre.music-genre",
       "mappedBy": "artists"
+    },
+    "music": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music.music",
+      "mappedBy": "artists"
     }
   }
 }

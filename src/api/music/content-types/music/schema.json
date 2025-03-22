@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "musics",
+  "info": {
+    "singularName": "music",
+    "pluralName": "musics",
+    "displayName": "Music"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "artists": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::artist.artist",
+      "inversedBy": "music"
+    },
+    "releaseDate": {
+      "type": "date"
+    },
+    "coverArt": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "music_genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music-genre.music-genre",
+      "inversedBy": "music"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "listenUrl": {
+      "type": "string"
+    }
+  }
+}
