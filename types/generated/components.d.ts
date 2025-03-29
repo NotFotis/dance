@@ -77,6 +77,18 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedStats extends Struct.ComponentSchema {
+  collectionName: 'components_shared_stats';
+  info: {
+    displayName: 'stats';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    text: Schema.Attribute.String;
+    value: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -86,6 +98,7 @@ declare module '@strapi/strapi' {
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
       'shared.social-link': SharedSocialLink;
+      'shared.stats': SharedStats;
     }
   }
 }

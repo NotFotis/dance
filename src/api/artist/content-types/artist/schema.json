@@ -49,6 +49,12 @@
       "relation": "manyToMany",
       "target": "api::music.music",
       "mappedBy": "artists"
+    },
+    "saved_artists": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::saved-artist.saved-artist",
+      "mappedBy": "artist"
     }
   }
 }

@@ -470,6 +470,10 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     >;
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    saved_artists: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::saved-artist.saved-artist'
+    >;
     Socials: Schema.Attribute.Component<'shared.social-link', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -587,26 +591,52 @@ export interface ApiDanceNewsDanceNews extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     author: Schema.Attribute.Relation<'oneToOne', 'api::author.author'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Date: Schema.Attribute.Date & Schema.Attribute.Required;
-    description: Schema.Attribute.Blocks;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    Date: Schema.Attribute.Date &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    description: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::dance-news.dance-news'
-    > &
-      Schema.Attribute.Private;
+    >;
     music_genres: Schema.Attribute.Relation<
       'manyToMany',
       'api::music-genre.music-genre'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    Title: Schema.Attribute.String & Schema.Attribute.Required;
+    Title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -775,6 +805,7 @@ export interface ApiMusicGenreMusicGenre extends Struct.CollectionTypeSchema {
 export interface ApiMusicMusic extends Struct.CollectionTypeSchema {
   collectionName: 'musics';
   info: {
+    description: '';
     displayName: 'Music';
     pluralName: 'musics';
     singularName: 'music';
@@ -782,27 +813,127 @@ export interface ApiMusicMusic extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     artists: Schema.Attribute.Relation<'manyToMany', 'api::artist.artist'>;
-    coverArt: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    coverArt: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
-    listenUrl: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::music.music'> &
-      Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    listenUrl: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::music.music'>;
     music_genres: Schema.Attribute.Relation<
       'manyToMany',
       'api::music-genre.music-genre'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    releaseDate: Schema.Attribute.Date;
-    Title: Schema.Attribute.String;
+    releaseDate: Schema.Attribute.Date &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiOurJourneyOurJourney extends Struct.SingleTypeSchema {
+  collectionName: 'our_journeys';
+  info: {
+    displayName: 'ourJourney';
+    pluralName: 'our-journeys';
+    singularName: 'our-journey';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::our-journey.our-journey'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    stats: Schema.Attribute.Component<'shared.stats', true>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSavedArtistSavedArtist extends Struct.CollectionTypeSchema {
+  collectionName: 'saved_artists';
+  info: {
+    description: '';
+    displayName: 'saved-artists';
+    pluralName: 'saved-artists';
+    singularName: 'saved-artist';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    artist: Schema.Attribute.Relation<'manyToOne', 'api::artist.artist'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::saved-artist.saved-artist'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1363,6 +1494,10 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    saved_artists: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::saved-artist.saved-artist'
+    >;
     saved_events: Schema.Attribute.Relation<
       'oneToMany',
       'api::saved-event.saved-event'
@@ -1404,6 +1539,8 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::music-genre.music-genre': ApiMusicGenreMusicGenre;
       'api::music.music': ApiMusicMusic;
+      'api::our-journey.our-journey': ApiOurJourneyOurJourney;
+      'api::saved-artist.saved-artist': ApiSavedArtistSavedArtist;
       'api::saved-event.saved-event': ApiSavedEventSavedEvent;
       'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
