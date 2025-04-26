@@ -707,6 +707,7 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::saved-event.saved-event'
     >;
+    specialEvent: Schema.Attribute.Boolean;
     tickets: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

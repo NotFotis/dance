@@ -106,6 +106,9 @@
           "localized": true
         }
       }
+    },
+    "specialEvent": {
+      "type": "boolean"
     }
   }
 }
