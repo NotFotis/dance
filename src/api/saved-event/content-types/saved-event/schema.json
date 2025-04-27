@@ -11,12 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "event": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::event.event",
-      "inversedBy": "savedEvents"
-    },
     "user": {
       "type": "relation",
       "relation": "manyToOne",

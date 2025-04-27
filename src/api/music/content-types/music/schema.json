@@ -75,6 +75,12 @@
           "localized": true
         }
       }
+    },
+    "authors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::author.author",
+      "inversedBy": "music"
     }
   }
 }

@@ -505,6 +505,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
       'api::author.author'
     > &
       Schema.Attribute.Private;
+    music: Schema.Attribute.Relation<'manyToMany', 'api::music.music'>;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -614,7 +615,10 @@ export interface ApiDanceNewsDanceNews extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+    Image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -630,6 +634,7 @@ export interface ApiDanceNewsDanceNews extends Struct.CollectionTypeSchema {
       'api::music-genre.music-genre'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     Title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -677,10 +682,6 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    events: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::saved-event.saved-event'
-    >;
     Image: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -690,23 +691,20 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    Loaction: Schema.Attribute.String &
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
+    Location: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
     music_genres: Schema.Attribute.Relation<
       'manyToMany',
       'api::music-genre.music-genre'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    savedEvents: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::saved-event.saved-event'
-    >;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     specialEvent: Schema.Attribute.Boolean;
     tickets: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
@@ -821,6 +819,7 @@ export interface ApiMusicMusic extends Struct.CollectionTypeSchema {
   };
   attributes: {
     artists: Schema.Attribute.Relation<'manyToMany', 'api::artist.artist'>;
+    authors: Schema.Attribute.Relation<'manyToMany', 'api::author.author'>;
     coverArt: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -953,7 +952,6 @@ export interface ApiSavedEventSavedEvent extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    event: Schema.Attribute.Relation<'manyToOne', 'api::event.event'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1006,6 +1004,35 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSpotifyPlaylistSpotifyPlaylist
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'spotify_playlists';
+  info: {
+    displayName: 'spotifyPlaylists';
+    pluralName: 'spotify-playlists';
+    singularName: 'spotify-playlist';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::spotify-playlist.spotify-playlist'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    URL: Schema.Attribute.String;
   };
 }
 
@@ -1544,6 +1571,7 @@ declare module '@strapi/strapi' {
       'api::saved-artist.saved-artist': ApiSavedArtistSavedArtist;
       'api::saved-event.saved-event': ApiSavedEventSavedEvent;
       'api::service.service': ApiServiceService;
+      'api::spotify-playlist.spotify-playlist': ApiSpotifyPlaylistSpotifyPlaylist;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

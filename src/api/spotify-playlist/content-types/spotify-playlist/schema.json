@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "spotify_playlists",
+  "info": {
+    "singularName": "spotify-playlist",
+    "pluralName": "spotify-playlists",
+    "displayName": "spotifyPlaylists"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "URL": {
+      "type": "string"
+    }
+  }
+}

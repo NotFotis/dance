@@ -43,7 +43,7 @@
         }
       }
     },
-    "Loaction": {
+    "Location": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -75,18 +75,6 @@
         }
       }
     },
-    "events": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::saved-event.saved-event",
-      "mappedBy": "event"
-    },
-    "savedEvents": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::saved-event.saved-event",
-      "mappedBy": "event"
-    },
     "artists": {
       "type": "relation",
       "relation": "manyToMany",
@@ -109,6 +97,11 @@
     },
     "specialEvent": {
       "type": "boolean"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }
