@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "news_page_settings",
+  "info": {
+    "singularName": "news-page-setting",
+    "pluralName": "news-page-settings",
+    "displayName": "News Page Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

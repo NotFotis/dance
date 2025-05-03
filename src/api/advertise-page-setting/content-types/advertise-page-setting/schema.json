@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "advertise_page_settings",
+  "info": {
+    "singularName": "advertise-page-setting",
+    "pluralName": "advertise-page-settings",
+    "displayName": "Advertise Page Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "events_page_settings",
+  "info": {
+    "singularName": "events-page-setting",
+    "pluralName": "events-page-settings",
+    "displayName": "Events Page Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

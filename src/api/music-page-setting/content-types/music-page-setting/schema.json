@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "music_page_settings",
+  "info": {
+    "singularName": "music-page-setting",
+    "pluralName": "music-page-settings",
+    "displayName": "Music Page Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

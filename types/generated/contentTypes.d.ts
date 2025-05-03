@@ -396,6 +396,35 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiAdvertisePageSettingAdvertisePageSetting
+  extends Struct.SingleTypeSchema {
+  collectionName: 'advertise_page_settings';
+  info: {
+    displayName: 'Advertise Page Settings';
+    pluralName: 'advertise-page-settings';
+    singularName: 'advertise-page-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::advertise-page-setting.advertise-page-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   collectionName: 'articles';
   info: {
@@ -732,6 +761,35 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEventsPageSettingEventsPageSetting
+  extends Struct.SingleTypeSchema {
+  collectionName: 'events_page_settings';
+  info: {
+    displayName: 'Events Page Settings';
+    pluralName: 'events-page-settings';
+    singularName: 'events-page-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::events-page-setting.events-page-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -801,6 +859,35 @@ export interface ApiMusicGenreMusicGenre extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMusicPageSettingMusicPageSetting
+  extends Struct.SingleTypeSchema {
+  collectionName: 'music_page_settings';
+  info: {
+    displayName: 'Music Page Settings';
+    pluralName: 'music-page-settings';
+    singularName: 'music-page-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::music-page-setting.music-page-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMusicMusic extends Struct.CollectionTypeSchema {
   collectionName: 'musics';
   info: {
@@ -860,6 +947,35 @@ export interface ApiMusicMusic extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNewsPageSettingNewsPageSetting
+  extends Struct.SingleTypeSchema {
+  collectionName: 'news_page_settings';
+  info: {
+    displayName: 'News Page Settings';
+    pluralName: 'news-page-settings';
+    singularName: 'news-page-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::news-page-setting.news-page-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1557,6 +1673,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::advertise-page-setting.advertise-page-setting': ApiAdvertisePageSettingAdvertisePageSetting;
       'api::article.article': ApiArticleArticle;
       'api::artist.artist': ApiArtistArtist;
       'api::author.author': ApiAuthorAuthor;
@@ -1564,9 +1681,12 @@ declare module '@strapi/strapi' {
       'api::contact-form.contact-form': ApiContactFormContactForm;
       'api::dance-news.dance-news': ApiDanceNewsDanceNews;
       'api::event.event': ApiEventEvent;
+      'api::events-page-setting.events-page-setting': ApiEventsPageSettingEventsPageSetting;
       'api::global.global': ApiGlobalGlobal;
       'api::music-genre.music-genre': ApiMusicGenreMusicGenre;
+      'api::music-page-setting.music-page-setting': ApiMusicPageSettingMusicPageSetting;
       'api::music.music': ApiMusicMusic;
+      'api::news-page-setting.news-page-setting': ApiNewsPageSettingNewsPageSetting;
       'api::our-journey.our-journey': ApiOurJourneyOurJourney;
       'api::saved-artist.saved-artist': ApiSavedArtistSavedArtist;
       'api::saved-event.saved-event': ApiSavedEventSavedEvent;
