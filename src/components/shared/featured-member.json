@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_featured_members",
+  "info": {
+    "displayName": "featuredMember"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "quote": {
+      "type": "string"
+    }
+  }
+}

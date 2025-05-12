@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_discussion_topics",
+  "info": {
+    "displayName": "discussionTopics"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

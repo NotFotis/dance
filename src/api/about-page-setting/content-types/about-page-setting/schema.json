@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_page_settings",
+  "info": {
+    "singularName": "about-page-setting",
+    "pluralName": "about-page-settings",
+    "displayName": "About Page Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

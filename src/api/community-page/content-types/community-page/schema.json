@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "community_pages",
+  "info": {
+    "singularName": "community-page",
+    "pluralName": "community-pages",
+    "displayName": "Community Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "discordInviteUrl": {
+      "type": "string"
+    },
+    "newsletterText": {
+      "type": "blocks"
+    },
+    "socialEmbedCode": {
+      "type": "blocks"
+    },
+    "Mix": {
+      "displayName": "mixes",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.mixes"
+    },
+    "discussionTopic": {
+      "displayName": "discussionTopics",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.discussion-topics"
+    }
+  }
+}

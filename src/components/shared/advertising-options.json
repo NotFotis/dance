@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_advertising_options",
+  "info": {
+    "displayName": "advertisingOptions"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    }
+  }
+}

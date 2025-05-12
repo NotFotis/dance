@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_shared_mixes",
+  "info": {
+    "displayName": "mixes"
+  },
+  "options": {},
+  "attributes": {
+    "embedCode": {
+      "type": "blocks"
+    }
+  }
+}

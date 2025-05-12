@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_uses",
+  "info": {
+    "singularName": "about-us",
+    "pluralName": "about-uses",
+    "displayName": "About us",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "ourStoryDescription": {
+      "type": "blocks"
+    },
+    "missionDescription": {
+      "type": "blocks"
+    },
+    "visionDescription": {
+      "type": "blocks"
+    },
+    "Members": {
+      "displayName": "teamMembers",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.team-members"
+    }
+  }
+}

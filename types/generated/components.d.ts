@@ -1,5 +1,38 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedAdvertisingOptions extends Struct.ComponentSchema {
+  collectionName: 'components_shared_advertising_options';
+  info: {
+    displayName: 'advertisingOptions';
+  };
+  attributes: {
+    description: Schema.Attribute.Blocks;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedDiscussionTopics extends Struct.ComponentSchema {
+  collectionName: 'components_shared_discussion_topics';
+  info: {
+    displayName: 'discussionTopics';
+  };
+  attributes: {
+    link: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedFeaturedMember extends Struct.ComponentSchema {
+  collectionName: 'components_shared_featured_members';
+  info: {
+    displayName: 'featuredMember';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    quote: Schema.Attribute.String;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -8,6 +41,16 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
   attributes: {
     file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface SharedMixes extends Struct.ComponentSchema {
+  collectionName: 'components_shared_mixes';
+  info: {
+    displayName: 'mixes';
+  };
+  attributes: {
+    embedCode: Schema.Attribute.Blocks;
   };
 }
 
@@ -71,7 +114,16 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
   };
   attributes: {
     platform: Schema.Attribute.Enumeration<
-      ['Facebook', 'Instagram', 'X', 'Beatport', 'Spotify']
+      [
+        'Facebook',
+        'Instagram',
+        'X',
+        'Beatport',
+        'Spotify',
+        'Soundcloud',
+        'Apple Music',
+        'Tidal',
+      ]
     >;
     URL: Schema.Attribute.String;
   };
@@ -89,16 +141,35 @@ export interface SharedStats extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedTeamMembers extends Struct.ComponentSchema {
+  collectionName: 'components_shared_team_members';
+  info: {
+    displayName: 'teamMembers';
+  };
+  attributes: {
+    bio: Schema.Attribute.Blocks;
+    name: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    role: Schema.Attribute.String;
+    socials: Schema.Attribute.Component<'shared.social-link', true>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.advertising-options': SharedAdvertisingOptions;
+      'shared.discussion-topics': SharedDiscussionTopics;
+      'shared.featured-member': SharedFeaturedMember;
       'shared.media': SharedMedia;
+      'shared.mixes': SharedMixes;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;
       'shared.social-link': SharedSocialLink;
       'shared.stats': SharedStats;
+      'shared.team-members': SharedTeamMembers;
     }
   }
 }
