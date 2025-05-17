@@ -9,7 +9,8 @@
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "create-uploads-dir": "node ./scripts/createUploadsDir.js"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^5.0.1",
