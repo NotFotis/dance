@@ -9,9 +9,7 @@
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
-    "strapi": "strapi",
-    "postinstall": "npm run create-uploads-dir",
-    "create-uploads-dir": "node ./scripts/createUploadsDir.js"
+    "strapi": "strapi"
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^5.0.1",
@@ -20,6 +18,7 @@
     "@strapi/plugin-users-permissions": "^5.10.3",
     "@strapi/provider-email-nodemailer": "^5.13.0",
     "@strapi/provider-email-sendgrid": "^5.13.0",
+    "@strapi/provider-upload-cloudinary": "^5.13.0",
     "@strapi/strapi": "5.10.3",
     "@yanotoma/strapi-provider-email-sendinblue": "^1.1.0",
     "better-sqlite3": "11.3.0",
