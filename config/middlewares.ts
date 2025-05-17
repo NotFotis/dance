@@ -26,4 +26,8 @@ export default [
       },
     },
   },
+  {
+    name: 'create-uploads-dir',
+    config: {},
+  },
 ];

@@ -19,5 +19,13 @@ module.exports = ({ env }) => ({
           defaultReplyTo: 'f.staikos7@gmail.com',
         },
       },
-    }
+    },
+    upload: {
+    config: {
+      provider: 'local',
+      providerOptions: {
+        sizeLimit: 5000000, // 5 MB limit (adjust as needed)
+      },
+    },
+  },
   });
