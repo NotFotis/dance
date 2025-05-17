@@ -10,6 +10,10 @@ export default [
   'strapi::favicon',
   'strapi::public',
   {
+    name: 'global::create-uploads-dir',
+    config: {},
+  },
+  {
     name: "strapi::security",
     config: {
       contentSecurityPolicy: {
