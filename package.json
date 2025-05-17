@@ -10,6 +10,7 @@
     "seed:example": "node ./scripts/seed.js",
     "start": "strapi start",
     "strapi": "strapi",
+    "postinstall": "npm run create-uploads-dir",
     "create-uploads-dir": "node ./scripts/createUploadsDir.js"
   },
   "dependencies": {
