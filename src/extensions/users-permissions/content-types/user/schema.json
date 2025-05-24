@@ -64,24 +64,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "user": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::saved-event.saved-event",
-      "mappedBy": "users_permissions_user"
-    },
-    "saved_events": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::saved-event.saved-event",
-      "mappedBy": "user"
-    },
-    "saved_artists": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::saved-artist.saved-artist",
-      "mappedBy": "users_permissions_user"
     }
   }
 }

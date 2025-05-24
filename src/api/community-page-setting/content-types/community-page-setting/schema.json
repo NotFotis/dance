@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "community_page_settings",
+  "info": {
+    "singularName": "community-page-setting",
+    "pluralName": "community-page-settings",
+    "displayName": "Community Page Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

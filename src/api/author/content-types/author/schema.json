@@ -34,12 +34,6 @@
       "target": "api::article.article",
       "mappedBy": "author"
     },
-    "User": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::saved-event.saved-event",
-      "mappedBy": "user"
-    },
     "music": {
       "type": "relation",
       "relation": "manyToMany",

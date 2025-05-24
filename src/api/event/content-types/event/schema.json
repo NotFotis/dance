@@ -108,6 +108,10 @@
       "relation": "manyToMany",
       "target": "api::host.host",
       "inversedBy": "events"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Title"
     }
   }
 }
