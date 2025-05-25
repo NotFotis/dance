@@ -1025,6 +1025,40 @@ export interface ApiHostHost extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiLegalPageLegalPage extends Struct.CollectionTypeSchema {
+  collectionName: 'legal_pages';
+  info: {
+    displayName: 'LegalPage';
+    pluralName: 'legal-pages';
+    singularName: 'legal-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    content: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::legal-page.legal-page'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'title'>;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMusicGenreMusicGenre extends Struct.CollectionTypeSchema {
   collectionName: 'music_genres';
   info: {
@@ -1962,6 +1996,7 @@ declare module '@strapi/strapi' {
       'api::events-page-setting.events-page-setting': ApiEventsPageSettingEventsPageSetting;
       'api::global.global': ApiGlobalGlobal;
       'api::host.host': ApiHostHost;
+      'api::legal-page.legal-page': ApiLegalPageLegalPage;
       'api::music-genre.music-genre': ApiMusicGenreMusicGenre;
       'api::music-page-setting.music-page-setting': ApiMusicPageSettingMusicPageSetting;
       'api::music.music': ApiMusicMusic;
