@@ -49,6 +49,15 @@
       "relation": "manyToMany",
       "target": "api::music.music",
       "mappedBy": "artists"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
     }
   }
 }

@@ -582,6 +582,35 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiArtistPageSettingArtistPageSetting
+  extends Struct.SingleTypeSchema {
+  collectionName: 'artist_page_settings';
+  info: {
+    displayName: 'Artist Page Settings';
+    pluralName: 'artist-page-settings';
+    singularName: 'artist-page-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::artist-page-setting.artist-page-setting'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
   collectionName: 'artists';
   info: {
@@ -612,6 +641,8 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     >;
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.UID<'Name'>;
     Socials: Schema.Attribute.Component<'shared.social-link', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1985,6 +2016,7 @@ declare module '@strapi/strapi' {
       'api::advertise-page-setting.advertise-page-setting': ApiAdvertisePageSettingAdvertisePageSetting;
       'api::advertise.advertise': ApiAdvertiseAdvertise;
       'api::article.article': ApiArticleArticle;
+      'api::artist-page-setting.artist-page-setting': ApiArtistPageSettingArtistPageSetting;
       'api::artist.artist': ApiArtistArtist;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
