@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "Name": {
       "type": "string",
@@ -27,10 +28,9 @@
       ]
     },
     "Socials": {
-      "displayName": "SocialLink",
       "type": "component",
-      "repeatable": true,
-      "component": "shared.social-link"
+      "component": "shared.social-link",
+      "repeatable": true
     },
     "events": {
       "type": "relation",
@@ -56,8 +56,14 @@
     },
     "seo": {
       "type": "component",
-      "repeatable": false,
-      "component": "shared.seo"
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "dance_news": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::dance-news.dance-news",
+      "inversedBy": "artists"
     }
   }
 }
