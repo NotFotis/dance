@@ -1,5 +1,4 @@
 // src/index.ts
-const documentServiceMiddleware = require('./api/artist/content-types/artist/document-service-middleware');
 import fetch from 'node-fetch';
 
 async function getSpotifyToken(): Promise<string> {
