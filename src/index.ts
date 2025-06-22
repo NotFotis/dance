@@ -1,10 +1,84 @@
 // src/index.ts
+const documentServiceMiddleware = require('./api/artist/content-types/artist/document-service-middleware');
+import fetch from 'node-fetch';
+
+async function getSpotifyToken(): Promise<string> {
+  const res = await fetch('https://accounts.spotify.com/api/token', {
+    method: 'POST',
+    headers: {
+      Authorization:
+        'Basic ' +
+        Buffer.from(
+          `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`
+        ).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: 'grant_type=client_credentials',
+  });
+  const data = await res.json();
+  return data.access_token as string;
+}
+
+async function getSpotifyImageUrl(artistName: string): Promise<string | null> {
+  const token = await getSpotifyToken();
+  const q = encodeURIComponent(artistName);
+  const res = await fetch(
+    `https://api.spotify.com/v1/search?q=${q}&type=artist&limit=1`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  const data = await res.json();
+  const artist = data.artists?.items?.[0];
+  return artist?.images?.[0]?.url ?? null;
+}
 
 export default {
   /**
    * Runs before your application is initialized.
    */
-  register() {},
+  
+  register({ strapi }: { strapi: any }) {
+    strapi.documents.use(
+      async (
+        context: {
+          uid: string;
+          action: string;
+          params: { data: Record<string, any> };
+        },
+        next: () => Promise<void>
+      ) => {
+        // Only run for 'artist' create and update
+        if (
+          context.uid === 'api::artist.artist' &&
+          ['create', 'update'].includes(context.action)
+        ) {
+          const data = context.params.data;
+          console.log(data);
+          
+          // Use 'Name' field as per your schema (case-sensitive)
+          if (
+            data &&
+            data.Name &&
+            (!data.spotifyImageUrl || data.spotifyImageUrl === '')
+          ) {
+            try {
+              const url = await getSpotifyImageUrl(data.Name);
+              if (url) {
+                data.spotifyImageUrl = url;
+              }
+            } catch (e: any) {
+              strapi.log.error('Spotify API error: ' + e.message);
+            }
+          }
+        }
+        return next();
+      }
+    );
+  },
+
 
   /**
    * Runs before your application starts.

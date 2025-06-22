@@ -648,6 +648,7 @@ export interface ApiArtistArtist extends Struct.CollectionTypeSchema {
     seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'Name'>;
     Socials: Schema.Attribute.Component<'shared.social-link', true>;
+    spotifyImageUrl: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
