@@ -67,6 +67,12 @@
     },
     "spotifyImageUrl": {
       "type": "string"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "specialArtist": {
+      "type": "boolean"
     }
   }
 }
