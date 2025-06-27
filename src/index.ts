@@ -53,6 +53,24 @@ async function getLastFmBio(artistName: string): Promise<string | null> {
   return bio;
 }
 
+function extractTextUniversal(description) {
+  // Case 1: Already a string
+  if (typeof description === 'string') return description;
+
+  // Case 2: Array of nodes (Slate or similar)
+  if (Array.isArray(description)) {
+    return description
+      .map(node => {
+        if (node.text) return node.text;
+        if (Array.isArray(node.children)) return extractTextUniversal(node.children);
+        return '';
+      })
+      .join(' ');
+  }
+
+  // Fallback: Something else (null, object, etc)
+  return '';
+}
 
 function autoFillSeo(data, model) {
   if (!data) return;
@@ -60,7 +78,7 @@ function autoFillSeo(data, model) {
 
   if (!data.seo) data.seo = {};
 
-  const title = data.title || data.Name || data.subject || '';
+  const title = data.title || data.Name || data.subject || data.Title || '';
   const description =
     data.description ||
     data.bio ||
@@ -71,7 +89,9 @@ function autoFillSeo(data, model) {
     data.seo.metaTitle = title.substring(0, 60);
   }
   if (!data.seo.metaDescription && description) {
-    data.seo.metaDescription = description.substring(0, 160);
+    const text = extractTextUniversal(description);
+    const summary = text.substring(0, 100);    
+    data.seo.metaDescription = summary;
   }
 
   // ---- Robust image extraction ----
