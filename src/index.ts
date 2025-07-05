@@ -78,11 +78,12 @@ function autoFillSeo(data, model) {
 
   if (!data.seo) data.seo = {};
 
-  const title = data.title || data.Name || data.subject || data.Title || '';
+  const title = data.title || data.Name || data.subject || data.Title || data.name || '';
   const description =
     data.description ||
     data.bio ||
     data.summary ||
+    data.name ||
     (typeof data.body === 'string' ? data.body : '');
 
   if (!data.seo.metaTitle && title) {
