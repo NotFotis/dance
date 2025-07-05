@@ -1129,6 +1129,8 @@ export interface ApiMusicGenreMusicGenre extends Struct.CollectionTypeSchema {
     music: Schema.Attribute.Relation<'manyToMany', 'api::music.music'>;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

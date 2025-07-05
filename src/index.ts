@@ -192,6 +192,21 @@ function autoFillSeo(data, model) {
         }),
         ...(data.publishedAt && { "datePublished": data.publishedAt }),
       };
+    } else if (model.includes('music-genre')) {
+      if (!data.seo.canonicalURL && data.slug) {
+        data.seo.canonicalURL = `https://www.dancetoday.com.gr/${locale}/music/${data.slug}`;
+      }
+      data.seo.structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Music",
+        "headline": title,
+        "description": description,
+        ...(imageField && { "image": getImageUrl(imageField) }),
+        ...(data.slug && {
+          "url": `https://www.dancetoday.com.gr/${locale}/news/${data.slug}`,
+        }),
+        ...(data.publishedAt && { "datePublished": data.publishedAt }),
+      };
     }
   }
 
@@ -235,6 +250,7 @@ export default {
           ['create', 'update'].includes(context.action) &&
           context.params?.data
         ) {
+          
           // Automate SEO fields (for any model using SEO component)
           if (
             context.uid === 'api::artist.artist'
